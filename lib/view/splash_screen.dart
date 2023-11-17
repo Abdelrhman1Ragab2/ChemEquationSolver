@@ -1,6 +1,7 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:equation/core/Data/app_color.dart';
+import 'package:equation/core/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -26,7 +27,12 @@ class _SplashScreenState extends State<SplashScreen> {
         duration: 3000,
         curve: Curves.linear,
         splashTransition: SplashTransition.scaleTransition,
-        splash:Image.asset("assets/images/chemistry.png") ,
+        splash:Column(
+          children: [
+            Image.asset("assets/images/chemistry.png"),
+            const Text("welcome to in our app",style: AppStyle.style20W,)
+          ],
+        ) ,
         pageTransitionType: PageTransitionType.leftToRightJoined,
     );
   }
