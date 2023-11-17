@@ -12,6 +12,7 @@ import 'controller/provider/buttom_provider.dart';
 import 'controller/provider/element_provider.dart';
 import 'controller/provider/on_boarding_provider.dart';
 import 'controller/provider/user_provider.dart';
+import 'core/Shared_preferences.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -19,6 +20,9 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  bool isFirstTime = await AppSharedPref().isFirstTimeUser();
+  print(isFirstTime);
+
   runApp(MultiProvider(
     providers: [
 
@@ -30,7 +34,7 @@ void main() async{
       ChangeNotifierProvider(create: (_) => SearchProvider()),
       ChangeNotifierProvider(create: (_) => EquationProvider()),
     ],
-    child: const MyApp(),
+    child:  MyApp(isFirstTime:isFirstTime ),
   ),);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black45

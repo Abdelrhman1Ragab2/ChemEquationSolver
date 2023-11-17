@@ -8,6 +8,7 @@ import '../../../model/onboarding.dart';
 import '../../controller/provider/on_boarding_provider.dart';
 import '../../core/Data/app_color.dart';
 import '../../core/Data/static_data.dart';
+import '../../core/Shared_preferences.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
@@ -70,6 +71,7 @@ class OnBoardingPage extends StatelessWidget {
                       if (currentIndex == 2) {
                         Navigator.pushReplacementNamed(
                             context, HomePage.routeName);
+                        AppSharedPref().storeUserInfo();
                       } else {
                         Provider.of<OnBoardingProvider>(context, listen: false)
                             .next();

@@ -2,6 +2,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:equation/core/Data/app_color.dart';
 import 'package:equation/core/style.dart';
+import 'package:equation/view/on_bording/on_boarding_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
         splashTransition: SplashTransition.scaleTransition,
         splash:Column(
           children: [
-            Image.asset("assets/images/chemistry.png"),
+            Image.asset("assets/images/chemistry.png",height: 125,width: 125,),
             const Text("welcome to in our app",style: AppStyle.style20W,)
           ],
         ) ,
