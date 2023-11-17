@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500342287412",
+    "project_id": "equation-84008",
+    "storage_bucket": "equation-84008.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500342287412:android:a3dd258c2a6dab93f7ae61",
+        "android_client_info": {
+          "package_name": "com.example.equation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaF5BuwW-tOkeGtButJxdogv4tNOM2b9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
