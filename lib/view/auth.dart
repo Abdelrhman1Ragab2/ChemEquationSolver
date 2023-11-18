@@ -1,4 +1,4 @@
-import 'package:equation/core/Data/app_color.dart';
+import 'package:equation/core/app_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +7,8 @@ import '../controller/provider/authinticat.dart';
 
 class Auth extends StatefulWidget {
   const Auth({Key? key}) : super(key: key);
+
+  static const String routeName="Auth";
 
   @override
   State<Auth> createState() => _AuthState();

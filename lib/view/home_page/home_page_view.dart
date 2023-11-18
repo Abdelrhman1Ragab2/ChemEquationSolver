@@ -1,6 +1,6 @@
 import 'package:equation/controller/provider/authinticat.dart';
 import 'package:equation/controller/provider/buttom_provider.dart';
-import 'package:equation/core/Data/app_color.dart';
+import 'package:equation/core/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';

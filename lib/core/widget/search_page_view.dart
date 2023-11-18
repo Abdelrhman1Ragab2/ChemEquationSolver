@@ -9,23 +9,26 @@ class SearchPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-        decoration: InputDecoration(
-      suffixIcon: IconButton(
-        icon: const Icon(Icons.search),
-        onPressed: () {},
-      ),
-      hintText: "search",
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18),
-          borderSide: const BorderSide(
-            color: Colors.white,
-          )),
-    )
-    ,
-    onChanged: (value){
-          print(value);
-          Provider.of<SearchProvider>(context,listen: false).activateElement(value);
-    },);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+          decoration: InputDecoration(
+        suffixIcon: IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () {},
+        ),
+        hintText: "search",
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(18),
+            borderSide: const BorderSide(
+              color: Colors.white,
+            )),
+      )
+      ,
+      onChanged: (value){
+            print(value);
+            Provider.of<SearchProvider>(context,listen: false).activateElement(value);
+      },),
+    );
   }
 }

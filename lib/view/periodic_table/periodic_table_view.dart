@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/provider/element_provider.dart';
 import '../../core/widget/search_page_view.dart';
+import 'elements_grid_view.dart';
 
 class PeriodicTable extends StatelessWidget {
   PeriodicTable({Key? key}) : super(key: key);
@@ -58,7 +59,7 @@ class PeriodicTable extends StatelessWidget {
             elements=Provider.of<SearchProvider>(context,listen: false).filterElement(elements!, searchToken);
           }
           return elements!.isEmpty?const Text("no found element"):
-          elementsGridView(elements);
+          ElementsGridView(elements: elements,crossCount: 4,inTable: true,aspectRatio: 0.95,);
         } else if (snapshot.hasError) {
           return Center(
             child: Text(snapshot.error.toString()),
@@ -72,21 +73,5 @@ class PeriodicTable extends StatelessWidget {
       stream: Provider.of<ElementProvider>(context).getElementsStream(),
     );
   }
-  Widget elementsGridView(var elements){
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        childAspectRatio: 0.95,
-        crossAxisSpacing: 5,
-        mainAxisSpacing: 5,
-      ),
-      itemBuilder: (context, index) {
-        return ElementBody(
-          canDelete: false,
-          element: elements![index],
-        );
-      },
-      itemCount: elements!.length,
-    );
-  }
+
 }

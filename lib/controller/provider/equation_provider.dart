@@ -3,16 +3,15 @@ import 'package:flutter/widgets.dart';
 import '../../model/element.dart';
 
 class EquationProvider with ChangeNotifier {
-  // bool canDeleteElement=false;
-
 
   final List<ElementModel> activeElements = [];
 
-  // toggleDeleteElement(bool newValue) {
-  //   canDeleteElement=newValue;
-  //   notifyListeners();
-  // }
+  List<ElementModel>getActiveElements(){
+    if(activeElements.isEmpty){
 
+    }
+    return activeElements;
+  }
   activateElements(ElementModel newElement) {
     bool founded=false;
     for (var element in activeElements) {
@@ -40,4 +39,6 @@ class EquationProvider with ChangeNotifier {
     activeElements.clear();
     notifyListeners();
   }
+
+
 }

@@ -1,8 +1,7 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:equation/core/Data/app_color.dart';
+import 'package:equation/core/app_color.dart';
 import 'package:equation/core/style.dart';
-import 'package:equation/view/on_bording/on_boarding_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
 
