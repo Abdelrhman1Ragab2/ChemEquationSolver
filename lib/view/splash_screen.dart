@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return
       AnimatedSplashScreen(
-        backgroundColor: AppColor.defaultColor,
+        backgroundColor: AppColor.colorA,
         splashIconSize: 150.0,
         nextScreen: const Auth(),
         duration: 3000,

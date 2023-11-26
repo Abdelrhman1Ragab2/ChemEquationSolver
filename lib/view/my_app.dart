@@ -4,12 +4,14 @@ import 'package:equation/core/utils/constant.dart';
 import 'package:equation/view/mobile_view/home_page/home_page_view.dart';
 import 'package:equation/view/mobile_view/on_bording/on_boarding_view.dart';
 import 'package:equation/view/mobile_view/periodic_table/periodic_table_view.dart';
-import 'package:equation/view/mobile_view/splash_screen.dart';
+import 'package:equation/view/splash_screen.dart';
+import 'package:equation/view/web_view/dash_bord.dart';
+import 'package:equation/view/web_view/home/periodic_table_web.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../model/user.dart';
+import '../model/user.dart';
 import 'auth.dart';
-import 'equations/prepartion_equation.dart';
+import 'mobile_view/equations/prepartion_equation.dart';
 
 class MyApp extends StatelessWidget {
   final bool isFirstTime;
@@ -36,17 +38,20 @@ class MyApp extends StatelessWidget {
           final AppUser? appUser = snapShot.data;
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: mapUserToHome(context, appUser),
+          home: const DashBordView(),
+          //  home: mapUserToHome(context, appUser),
             routes: {
               HomePage.routeName: (context) => const HomePage(),
               PeriodicTable.routeName: (context) => PeriodicTable(),
               PreparationEquation.routeName: (context) => const PreparationEquation(),
               Auth.routeName: (context) => const Auth(),
               MyApp.routeName: (context) => const MyApp(isFirstTime: false),
+              DashBordView.routeName: (context) => const DashBordView(),
+              PeriodicTableWeb.routeName: (context) =>  PeriodicTableWeb(),
             },
             theme: ThemeData(
               appBarTheme: const AppBarTheme(
-                backgroundColor: AppColor.defaultColor,
+                backgroundColor: AppColor.colorA,
               ),
             ),
           );
@@ -59,6 +64,6 @@ class MyApp extends StatelessWidget {
     }
     if (user == null) return const Auth();
     if (user.id == AppConstant.fakeUser.id) return const SplashScreen();
-    return const HomePage();
+    return const DashBordView();
   }
 }

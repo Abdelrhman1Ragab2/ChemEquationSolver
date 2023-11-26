@@ -1,5 +1,5 @@
 import 'package:equation/controller/provider/search_Provider.dart';
-import 'package:equation/view/mobile_view/my_app.dart';
+import 'package:equation/view/my_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import 'controller/provider/authinticat.dart';
 import 'controller/provider/buttom_provider.dart';
+import 'controller/provider/dash_bord_provider.dart';
 import 'controller/provider/element_provider.dart';
 import 'controller/provider/on_boarding_provider.dart';
 import 'controller/provider/perform_equation.dart';
@@ -36,6 +37,7 @@ void main() async{
       ChangeNotifierProvider(create: (_) => BottomProvider()),
       ChangeNotifierProvider(create: (_) => SearchProvider()),
       ChangeNotifierProvider(create: (_) => PerformEquationProvider()),
+      ChangeNotifierProvider(create: (_) => DashBoardProvider()),
     ],
     child:  MyApp(isFirstTime:isFirstTime ),
   ),);

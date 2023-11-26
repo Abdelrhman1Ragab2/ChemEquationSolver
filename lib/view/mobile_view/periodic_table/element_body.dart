@@ -1,6 +1,7 @@
 import 'package:equation/controller/provider/perform_equation.dart';
 import 'package:equation/core/utils/app_color.dart';
 import 'package:equation/core/utils/style.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,13 +25,13 @@ class ElementBody extends StatelessWidget {
           Navigator.pop(context);
           showSnackBar(
               context: context,
-              color: Colors.blueGrey,
+              color: AppColor.colorB,
               message: "${element.name} element added successfully");
         }
       },
       child: Container(
           decoration: BoxDecoration(
-            color: AppColor.colorA,
+            color: mapElementToColor(),
             borderRadius: const BorderRadius.all(Radius.circular(18)),
             border: Border.all(
               width: 1,
@@ -47,23 +48,27 @@ class ElementBody extends StatelessWidget {
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(element.molarMass.toString(),
-                      style: inTable ? AppStyle.style10 : AppStyle.style12),
-                  Text(
-                    element.atomicNumber.toString(),
-                    style: inTable ? AppStyle.style14 : AppStyle.style16,
-                  )
-                ],
-              ),
+              kIsWeb
+                  ? Text(element.atomicNumber.toString(),
+                      style: inTable ? AppStyle.style10 : AppStyle.style12)
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(element.molarMass.toString(),
+                            style:
+                                inTable ? AppStyle.style10 : AppStyle.style12),
+                        Text(
+                          element.atomicNumber.toString(),
+                          style: inTable ? AppStyle.style14 : AppStyle.style16,
+                        )
+                      ],
+                    ),
               const SizedBox(
                 height: 2,
               ),
               Text(
                 element.code,
-                style: inTable ? AppStyle.style16 : AppStyle.style18,
+                style: inTable ? AppStyle.style14 : AppStyle.style18,
               ),
               const SizedBox(
                 height: 2,
@@ -84,7 +89,7 @@ class ElementBody extends StatelessWidget {
                                 .deleteElementFromActiveElements(element.id);
                             showSnackBar(
                                 context: context,
-                                color: AppColor.defaultColor,
+                                color: AppColor.colorA,
                                 message:
                                     "${element.name} element deleted successfully");
 
@@ -139,7 +144,7 @@ class ElementBody extends StatelessWidget {
                             .deleteElementFromActiveElements(element.id);
                         showSnackBar(
                             context: context,
-                            color: AppColor.defaultColor,
+                            color: AppColor.colorA,
                             message:
                                 "${element.name} element deleted successfully");
 
@@ -150,5 +155,14 @@ class ElementBody extends StatelessWidget {
                       icon: const Icon(Icons.delete)),
             ],
           );
+  }
+
+  Color? mapElementToColor(){
+    if(element.atomicNumber>=57 &&element.atomicNumber<=70 ||element.atomicNumber>=89 &&element.atomicNumber<=102)return Colors.greenAccent;
+    if(element.atomicNumber==2)return Colors.red.shade400;
+    if(element.group<=2) return Colors.red.shade400;
+    if(element.group>=13){return Colors.yellow.shade400;}
+    else if(element.group>=3&&element.group<=12){return Colors.blueAccent;}
+
   }
 }

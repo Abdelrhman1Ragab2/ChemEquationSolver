@@ -44,6 +44,17 @@ class ElementModel {
         atomicNumber: ds.get(elementAtomicKey));
   }
 
+  // factory ElementModel.fromJson(Map<String,dynamic> jsonData){
+  //   return ElementModel(
+  //       id:jsonData["number"].toString() ,
+  //       name: jsonData["name"],
+  //       atomicNumber: jsonData["number"],
+  //       code: jsonData["symbol"],
+  //       molarMass: jsonData["atomic_mass"],
+  //       group: jsonData["group"],
+  //       period: jsonData["period"]);
+  // }
+
   static const String elementIdKey = "id";
   static const String elementNameKey = "name";
   static const String elementCodeKey = "code";

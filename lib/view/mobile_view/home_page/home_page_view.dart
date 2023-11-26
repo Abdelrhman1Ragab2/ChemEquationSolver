@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: AppColor.defaultColor,
+        backgroundColor: AppColor.colorA,
         index: Provider.of<BottomProvider>(context).currentIndex,
         items: const <Widget>[
           Icon(Icons.account_tree, size: 22),

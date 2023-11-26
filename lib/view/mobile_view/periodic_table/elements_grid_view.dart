@@ -13,7 +13,6 @@ class ElementsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return inTable? GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
       gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossCount,
         childAspectRatio: aspectRatio,
@@ -21,7 +20,7 @@ class ElementsGridView extends StatelessWidget {
         mainAxisSpacing: 5,
       ),
       itemBuilder: (context, index) {
-        return ElementBody(
+          return ElementBody(
           inTable: inTable,
           element: elements![index],
         );

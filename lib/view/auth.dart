@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/provider/authinticat.dart';
+import '../controller/provider/authinticat.dart';
 
 class Auth extends StatefulWidget {
   const Auth({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _AuthState extends State<Auth> {
   Widget build(BuildContext context) {
     AuthProvider pro = Provider.of<AuthProvider>(context);
     return Scaffold(
-        backgroundColor: AppColor.defaultColor,
+        backgroundColor: AppColor.colorA,
         body: buildBody(context, pro));
   }
 

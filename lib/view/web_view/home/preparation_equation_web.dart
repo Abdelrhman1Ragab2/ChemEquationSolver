@@ -1,28 +1,29 @@
+import 'package:equation/controller/provider/element_provider.dart';
 import 'package:equation/controller/provider/perform_equation.dart';
 import 'package:equation/core/utils/app_color.dart';
 import 'package:equation/core/utils/style.dart';
 import 'package:equation/core/widget/custom_text_field.dart';
+import 'package:equation/view/web_view/home/periodic_table_web.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/element.dart';
-import '../periodic_table/elements_grid_view.dart';
-import '../periodic_table/periodic_table_view.dart';
+import '../../mobile_view/periodic_table/elements_grid_view.dart';
+import '../../mobile_view/periodic_table/periodic_table_view.dart';
 
-class PreparationEquation extends StatefulWidget {
-  const PreparationEquation({Key? key}) : super(key: key);
-  static const String routeName = "/PreparationEquation";
+class PreparationEquationWebView extends StatefulWidget {
+  const PreparationEquationWebView({Key? key}) : super(key: key);
 
   @override
-  State<PreparationEquation> createState() => _PreparationEquationState();
+  State<PreparationEquationWebView> createState() => _PreparationEquationWebViewState();
 }
 
-class _PreparationEquationState extends State<PreparationEquation> {
-   late PerformEquationProvider _performEquationProvider;
+class _PreparationEquationWebViewState extends State<PreparationEquationWebView> {
+  late PerformEquationProvider _performEquationProvider;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-     _performEquationProvider = Provider.of<PerformEquationProvider>(context, listen: false);
+    _performEquationProvider = Provider.of<PerformEquationProvider>(context, listen: false);
 
   }
 
@@ -38,21 +39,6 @@ class _PreparationEquationState extends State<PreparationEquation> {
     List<ElementModel> elements =
         Provider.of<PerformEquationProvider>(context).activeElements;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Preparation of solutions"),
-          centerTitle: true,
-          actions: [
-            Visibility(
-              visible: elements.isNotEmpty,
-              child: IconButton(
-                  onPressed: () {
-
-                    Navigator.pushNamed(context, PeriodicTable.routeName);
-                  },
-                  icon: const Icon(Icons.add)),
-            )
-          ],
-        ),
         body: buildBody(context, elements));
   }
 
@@ -86,15 +72,15 @@ class _PreparationEquationState extends State<PreparationEquation> {
         padding: const EdgeInsets.all(8.0),
         child: elements.isEmpty
             ? const Text(
-                "Please add an element ",
-                style: AppStyle.style18,
-              )
+          "Please add an element ",
+          style: AppStyle.style18,
+        )
             : ElementsGridView(
-                elements: elements,
-                crossCount: 2,
-                inTable: false,
-                aspectRatio: 1.3,
-              ));
+          elements: elements,
+          crossCount: 2,
+          inTable: false,
+          aspectRatio: 1.3,
+        ));
   }
 
   Widget buildAddElementButtonBody(
@@ -104,7 +90,7 @@ class _PreparationEquationState extends State<PreparationEquation> {
       child: MaterialButton(
         color: AppColor.colorC,
         onPressed: () {
-          Navigator.pushNamed(context, PeriodicTable.routeName);
+          Navigator.pushNamed(context, PeriodicTableWeb.routeName);
         },
         child: const Text(
           "Add element",
@@ -138,15 +124,15 @@ class _PreparationEquationState extends State<PreparationEquation> {
                 )),
             CustomTextField(
                 controller:
-                    Provider.of<PerformEquationProvider>(context, listen: false)
-                        .controllerA,
+                Provider.of<PerformEquationProvider>(context, listen: false)
+                    .controllerA,
                 hintText: "Mass",
                 provider: Provider.of<PerformEquationProvider>(context,
                     listen: false)),
             CustomTextField(
                 controller:
-                    Provider.of<PerformEquationProvider>(context, listen: false)
-                        .controllerB,
+                Provider.of<PerformEquationProvider>(context, listen: false)
+                    .controllerB,
                 hintText: "Volume (mL)",
                 provider: Provider.of<PerformEquationProvider>(context,
                     listen: false)),
@@ -176,7 +162,7 @@ class _PreparationEquationState extends State<PreparationEquation> {
             //     )),
             Visibility(
                 visible: Provider.of<PerformEquationProvider>(context)
-                        .functionOutput !=
+                    .functionOutput !=
                     null,
                 child: Container(
                   margin: const EdgeInsets.all(8),

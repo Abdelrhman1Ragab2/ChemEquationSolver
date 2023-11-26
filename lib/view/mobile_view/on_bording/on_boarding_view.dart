@@ -1,5 +1,5 @@
 import 'package:equation/core/utils/style.dart';
-import 'package:equation/view/mobile_view/my_app.dart';
+import 'package:equation/view/my_app.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
