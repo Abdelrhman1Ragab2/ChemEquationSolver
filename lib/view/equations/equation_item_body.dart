@@ -1,7 +1,7 @@
 
 
-import 'package:equation/core/style.dart';
-import 'package:equation/view/equations/dummy_equation.dart';
+import 'package:equation/core/utils/style.dart';
+import 'package:equation/view/equations/prepartion_equation.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/Data/assets_data.dart';
@@ -14,7 +14,7 @@ class EquationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, DummyEquation.routeName);
+        Navigator.pushNamed(context, PreparationEquation.routeName);
       },
       child: Card(
         elevation: 10,
@@ -22,7 +22,8 @@ class EquationItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
                 AssetsData.chemistry,
@@ -32,23 +33,24 @@ class EquationItem extends StatelessWidget {
               const SizedBox(width: 25,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.5,
                       child: const Text(
-                        "Mass molar equation",
+                        "Preparation of solutions",
                         style: AppStyle.style16,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       )),
-                  const SizedBox(height: 5,),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("free"),
-                      RatingBody()
-                    ],
-                  )
+                  // const SizedBox(height: 5,),
+                  // const Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Text("free"),
+                  //     RatingBody()
+                  //   ],
+                  // )
                 ],
               ),
             ],

@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 
+import '../../model/element.dart';
+
 class PerformEquationProvider with ChangeNotifier{
+
   TextEditingController controllerA=TextEditingController();
   TextEditingController controllerB=TextEditingController();
 
   final formKey = GlobalKey<FormState>();
-
   bool isLoading=false;
   String? functionOutput;
+
+  List<ElementModel> activeElements = [];
+
+
+
 
   deleteResult(){
     functionOutput=null;
     notifyListeners();
   }
 
-  void onSubmit({required double atomic,required double mass}) async{
+  void onSubmit() async{
     bool isValid = formKey.currentState!.validate();
     if (isValid) {
       formKey.currentState!.save();
@@ -22,7 +29,7 @@ class PerformEquationProvider with ChangeNotifier{
       try{
         isLoading=true;
         notifyListeners();
-        functionOutput=dummyEquation(atomic: atomic,mass: mass);
+        functionOutput=getWeight().toStringAsFixed(3);
         isLoading=false;
         notifyListeners();
       }
@@ -40,9 +47,47 @@ class PerformEquationProvider with ChangeNotifier{
 
   }
 
-  String dummyEquation({required double atomic,required double mass}){
+  double getWeight(){
 
-    var fun=(atomic*double.parse(controllerA.text) + mass*double.parse(controllerB.text)).toString();
-    return fun;
+    double moles=double.parse(controllerA.text);
+    double weight=activeElements[0].molarMass;
+    double volume=double.parse(controllerB.text);
+
+    return moles*weight*(volume/1000);
+
+
+  }
+
+
+
+  activateElements(ElementModel newElement) {
+    bool founded=false;
+    for (var element in activeElements) {
+      if(element.atomicNumber==newElement.atomicNumber){
+        founded=true;
+      }
+    }
+    if(!founded){
+      activeElements.add(newElement);
+    }
+    notifyListeners();
+  }
+
+
+  deleteElementFromActiveElements(String elementId){
+    for (int index=0; index<activeElements.length;index++) {
+      if(activeElements[index].id==elementId){
+        activeElements.removeAt(index);
+      }
+    }
+    notifyListeners();
+  }
+
+  resetPrepareEquation() {
+    activeElements.clear();
+    controllerA.text="";
+    controllerB.text="";
+     isLoading=false;
+    functionOutput=null;
   }
 }

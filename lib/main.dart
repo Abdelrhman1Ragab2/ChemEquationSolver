@@ -1,8 +1,7 @@
-import 'package:equation/controller/provider/equation_provider.dart';
 import 'package:equation/controller/provider/search_Provider.dart';
-import 'package:equation/core/app_color.dart';
 import 'package:equation/view/my_app.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -13,25 +12,29 @@ import 'controller/provider/element_provider.dart';
 import 'controller/provider/on_boarding_provider.dart';
 import 'controller/provider/perform_equation.dart';
 import 'controller/provider/user_provider.dart';
-import 'core/Shared_preferences.dart';
+import 'core/utils/Shared_preferences.dart';
 import 'firebase_options.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+      options: kIsWeb? const FirebaseOptions(
+        apiKey: 'AIzaSyBcGfABIWh0frmuxQs9EVzudHTefi6dQ5w',
+        appId: '1:500342287412:web:e19aba6a842b8e81f7ae61',
+        messagingSenderId: '500342287412',
+        projectId: 'equation-84008',):null
+
+
   );
   bool isFirstTime = await AppSharedPref().isFirstTimeUser();
   runApp(MultiProvider(
     providers: [
-
       ChangeNotifierProvider(create: (_) => OnBoardingProvider()),
       ChangeNotifierProvider(create: (_) => UserProvider()),
       ChangeNotifierProvider(create: (_) => AuthProvider()),
       ChangeNotifierProvider(create: (_) => ElementProvider()),
       ChangeNotifierProvider(create: (_) => BottomProvider()),
       ChangeNotifierProvider(create: (_) => SearchProvider()),
-      ChangeNotifierProvider(create: (_) => EquationProvider()),
       ChangeNotifierProvider(create: (_) => PerformEquationProvider()),
     ],
     child:  MyApp(isFirstTime:isFirstTime ),

@@ -11,6 +11,6 @@ class EquationList extends StatelessWidget {
     return ListView.separated(itemBuilder: (context,index){
        return const EquationItem();
     },
-        separatorBuilder: (context,index)=>const SizedBox(height: 10,), itemCount: 5);
+        separatorBuilder: (context,index)=>const SizedBox(height: 10,), itemCount: 1);
   }
 }

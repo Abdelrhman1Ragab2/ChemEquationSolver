@@ -1,6 +1,8 @@
 import 'package:equation/model/user.dart';
 
-import '../model/element.dart';
+import '../../controller/provider/perform_equation.dart';
+import '../../model/element.dart';
+
 
 class AppConstant {
   static final ElementModel fakeElement = ElementModel(
@@ -20,4 +22,9 @@ class AppConstant {
       bio: "",
       email: "",
       allowedCount: "10");
+
+  static const String additiveElement="additive_element";
+  static const String normalElement="normal_element";
+
+
 }

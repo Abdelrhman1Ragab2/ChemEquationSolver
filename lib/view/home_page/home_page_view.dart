@@ -1,6 +1,6 @@
 import 'package:equation/controller/provider/authinticat.dart';
 import 'package:equation/controller/provider/buttom_provider.dart';
-import 'package:equation/core/app_color.dart';
+import 'package:equation/core/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -13,10 +13,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: (){
+        actions: [
+          IconButton(onPressed: (){
           Provider.of<AuthProvider>(context,listen: false).signOut();
         }, icon: const Icon(Icons.logout))],
-        title: const Text("chemistry"),
+        title: const Text("Equations"),
         centerTitle: true,
       ),
       bottomNavigationBar: CurvedNavigationBar(

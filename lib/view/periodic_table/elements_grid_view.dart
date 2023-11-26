@@ -1,4 +1,6 @@
+import 'package:equation/controller/provider/perform_equation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../model/element.dart';
 import 'element_body.dart';
@@ -12,7 +14,7 @@ class ElementsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
+    return inTable? GridView.builder(
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossCount,
@@ -27,7 +29,16 @@ class ElementsGridView extends StatelessWidget {
         );
       },
       itemCount: elements!.length,
-    );
+    ):
+     ListView.separated(
+
+         itemBuilder: (context,index){
+      return ElementBody(
+        inTable: inTable,
+        element: elements![index],
+      );
+    },
+        separatorBuilder: (context,index)=>const SizedBox(height: 10,), itemCount: elements!.length);
 
   }
 }

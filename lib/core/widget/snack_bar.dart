@@ -1,4 +1,4 @@
-import 'package:equation/core/app_color.dart';
+import 'package:equation/core/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 
