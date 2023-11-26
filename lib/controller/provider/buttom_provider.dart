@@ -1,6 +1,6 @@
-import 'package:equation/view/home_page/equation_view.dart';
-import 'package:equation/view/home_page/experiment.dart';
-import 'package:equation/view/home_page/home_page.dart';
+import 'package:equation/view/mobile_view/home_page/equation_view.dart';
+import 'package:equation/view/mobile_view/home_page/experiment.dart';
+import 'package:equation/view/mobile_view/home_page/home_page.dart';
 import 'package:flutter/cupertino.dart';
 
 class BottomProvider with ChangeNotifier

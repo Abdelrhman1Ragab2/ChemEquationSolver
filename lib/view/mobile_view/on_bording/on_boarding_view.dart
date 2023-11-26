@@ -1,14 +1,14 @@
 import 'package:equation/core/utils/style.dart';
-import 'package:equation/view/my_app.dart';
+import 'package:equation/view/mobile_view/my_app.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/onboarding.dart';
-import '../../controller/provider/on_boarding_provider.dart';
-import '../../core/utils/app_color.dart';
-import '../../core/Data/static_data.dart';
-import '../../core/utils/Shared_preferences.dart';
+import '../../../controller/provider/on_boarding_provider.dart';
+import '../../../core/utils/app_color.dart';
+import '../../../core/Data/static_data.dart';
+import '../../../core/utils/Shared_preferences.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({Key? key}) : super(key: key);

@@ -1,8 +1,6 @@
-import 'package:equation/controller/provider/perform_equation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../model/element.dart';
+import '../../../model/element.dart';
 import 'element_body.dart';
 
 class ElementsGridView extends StatelessWidget {

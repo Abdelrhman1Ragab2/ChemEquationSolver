@@ -1,11 +1,10 @@
 
 
 import 'package:equation/core/utils/style.dart';
-import 'package:equation/view/equations/prepartion_equation.dart';
+import 'package:equation/view/mobile_view/equations/prepartion_equation.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/Data/assets_data.dart';
-import '../../core/widget/reating.dart';
+import '../../../core/Data/assets_data.dart';
 
 class EquationItem extends StatelessWidget {
   const EquationItem({Key? key}) : super(key: key);

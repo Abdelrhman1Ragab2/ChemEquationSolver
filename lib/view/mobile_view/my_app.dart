@@ -1,17 +1,13 @@
-import 'package:equation/controller/provider/perform_equation.dart';
 import 'package:equation/controller/provider/user_provider.dart';
 import 'package:equation/core/utils/app_color.dart';
 import 'package:equation/core/utils/constant.dart';
-import 'package:equation/view/home_page/home_page_view.dart';
-import 'package:equation/view/on_bording/on_boarding_view.dart';
-import 'package:equation/view/periodic_table/periodic_table_view.dart';
-import 'package:equation/view/splash_screen.dart';
+import 'package:equation/view/mobile_view/home_page/home_page_view.dart';
+import 'package:equation/view/mobile_view/on_bording/on_boarding_view.dart';
+import 'package:equation/view/mobile_view/periodic_table/periodic_table_view.dart';
+import 'package:equation/view/mobile_view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../core/utils/Shared_preferences.dart';
-import '../core/utils/services_locator.dart';
-import '../model/user.dart';
+import '../../model/user.dart';
 import 'auth.dart';
 import 'equations/prepartion_equation.dart';
 

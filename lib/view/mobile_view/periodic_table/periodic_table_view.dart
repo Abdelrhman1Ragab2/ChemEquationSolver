@@ -1,11 +1,10 @@
 import 'package:equation/controller/provider/search_Provider.dart';
 import 'package:equation/model/element.dart';
-import 'package:equation/view/periodic_table/element_body.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/provider/element_provider.dart';
-import '../../core/widget/search_page_view.dart';
+import '../../../controller/provider/element_provider.dart';
+import '../../../core/widget/search_page_view.dart';
 import 'elements_grid_view.dart';
 
 class PeriodicTable extends StatelessWidget {

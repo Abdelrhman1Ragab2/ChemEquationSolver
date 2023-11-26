@@ -4,8 +4,8 @@ import 'package:equation/core/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/widget/snack_bar.dart';
-import '../../model/element.dart';
+import '../../../core/widget/snack_bar.dart';
+import '../../../model/element.dart';
 
 class ElementBody extends StatelessWidget {
   final ElementModel element;

@@ -1,5 +1,5 @@
 import 'package:equation/controller/provider/search_Provider.dart';
-import 'package:equation/view/my_app.dart';
+import 'package:equation/view/mobile_view/my_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

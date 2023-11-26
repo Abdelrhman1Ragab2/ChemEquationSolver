@@ -5,7 +5,7 @@ import 'package:equation/core/widget/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/element.dart';
+import '../../../model/element.dart';
 import '../periodic_table/elements_grid_view.dart';
 import '../periodic_table/periodic_table_view.dart';
 
