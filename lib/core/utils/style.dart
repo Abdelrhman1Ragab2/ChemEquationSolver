@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppStyle{
 
@@ -34,10 +35,13 @@ abstract class AppStyle{
   );
   static const  TextStyle style10 = TextStyle(
     fontSize: 10,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
   );
   static const  TextStyle style12 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
+  static   TextStyle lato16 =GoogleFonts.lato(color: Colors.black,
+      fontSize: 20, fontWeight: FontWeight.w500);
+
 }

@@ -9,7 +9,9 @@ class PerformEquationProvider with ChangeNotifier{
 
   final formKey = GlobalKey<FormState>();
   bool isLoading=false;
+  bool isError=false;
   String? functionOutput;
+  String? errorMessage;
 
   List<ElementModel> activeElements = [];
 
@@ -22,33 +24,45 @@ class PerformEquationProvider with ChangeNotifier{
   }
 
   void onSubmit() async{
-    bool isValid = formKey.currentState!.validate();
-    if (isValid) {
-      formKey.currentState!.save();
+    if(activeElements.isEmpty){
+      isError=true;
+      errorMessage="please Select Element";
+      notifyListeners();
+    }
+    else{
+      bool isValid = formKey.currentState!.validate();
+      if (isValid) {
+        formKey.currentState!.save();
 
-      try{
-        isLoading=true;
-        notifyListeners();
-        functionOutput=getWeight().toStringAsFixed(3);
-        isLoading=false;
-        notifyListeners();
-      }
-      on Exception catch(error){
-        if(error is FormatException){
-          functionOutput="please enter only number! ";
+        try{
+          isLoading=true;
+          notifyListeners();
+          functionOutput=getWeight().toStringAsFixed(3);
+          isLoading=false;
+          isError=false;
+          notifyListeners();
         }
-        else{
-          functionOutput="${error.toString()} try again ";
+        catch(error){
+          isError=true;
+          if(error.toString().contains("FormatException")){
+            errorMessage="please enter only number! ";
+          }
+          else if(error.runtimeType.toString().contains("RangeError") ){
+            errorMessage="please select element";
+          }
+          else{
+            errorMessage="${error.toString()} ! ";
+          }
+          isLoading=false;
+          notifyListeners();
         }
-        isLoading=false;
-        notifyListeners();
       }
     }
+
 
   }
 
   double getWeight(){
-
     double moles=double.parse(controllerA.text);
     double weight=activeElements[0].molarMass;
     double volume=double.parse(controllerB.text);
@@ -88,6 +102,18 @@ class PerformEquationProvider with ChangeNotifier{
     controllerA.text="";
     controllerB.text="";
      isLoading=false;
+     isError=false;
+     errorMessage=null;
     functionOutput=null;
   }
+
+  updatePrepareEquation(){
+    controllerA.text="";
+    controllerB.text="";
+    isLoading=false;
+    isError=false;
+    errorMessage=null;
+    functionOutput=null;
+  }
+
 }

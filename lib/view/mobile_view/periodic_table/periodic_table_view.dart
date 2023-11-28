@@ -35,14 +35,6 @@ class PeriodicTable extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: periodicTableBody(context),
           )),
-          // Expanded(flex: 1,
-          //   child: TextButton(
-          //       onPressed: () {
-          //         Provider.of<ElementProvider>(context, listen: false)
-          //             .addElement(_fakeElement);
-          //       },
-          //       child: const Text("add element")),
-          // )
         ],
       ),
     );
@@ -53,8 +45,8 @@ class PeriodicTable extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var elements = snapshot.data;
-          final searchToken=Provider.of<SearchProvider>(context).searchToken;
-          if(searchToken!=null){
+          final searchToken=Provider.of<SearchProvider>(context).searchController.text;
+          if(searchToken.isNotEmpty){
             elements=Provider.of<SearchProvider>(context,listen: false).filterElement(elements!, searchToken);
           }
           return elements!.isEmpty?const Text("no found element"):
@@ -69,7 +61,7 @@ class PeriodicTable extends StatelessWidget {
           );
         }
       },
-      stream: Provider.of<ElementProvider>(context).getElementsStream(),
+     // stream: Provider.of<ElementProvider>(context).getElementsStream(),
     );
   }
 

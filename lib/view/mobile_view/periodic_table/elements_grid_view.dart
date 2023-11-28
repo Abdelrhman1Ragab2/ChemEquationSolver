@@ -1,7 +1,7 @@
+import 'package:equation/view/web_view/home/periodic_table_web/element_body_table.dart';
 import 'package:flutter/material.dart';
 
 import '../../../model/element.dart';
-import 'element_body.dart';
 
 class ElementsGridView extends StatelessWidget {
   final int crossCount;
@@ -12,7 +12,7 @@ class ElementsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return inTable? GridView.builder(
+    return GridView.builder(
       gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossCount,
         childAspectRatio: aspectRatio,
@@ -20,22 +20,12 @@ class ElementsGridView extends StatelessWidget {
         mainAxisSpacing: 5,
       ),
       itemBuilder: (context, index) {
-          return ElementBody(
-          inTable: inTable,
+          return ElementBodyInTable(
           element: elements![index],
         );
       },
       itemCount: elements!.length,
-    ):
-     ListView.separated(
-
-         itemBuilder: (context,index){
-      return ElementBody(
-        inTable: inTable,
-        element: elements![index],
-      );
-    },
-        separatorBuilder: (context,index)=>const SizedBox(height: 10,), itemCount: elements!.length);
+    );
 
   }
 }

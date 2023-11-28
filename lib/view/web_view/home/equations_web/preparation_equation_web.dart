@@ -1,30 +1,31 @@
-import 'package:equation/controller/provider/element_provider.dart';
 import 'package:equation/controller/provider/perform_equation.dart';
 import 'package:equation/core/utils/app_color.dart';
 import 'package:equation/core/utils/style.dart';
 import 'package:equation/core/widget/custom_text_field.dart';
-import 'package:equation/view/web_view/home/periodic_table_web.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../model/element.dart';
-import '../../mobile_view/periodic_table/elements_grid_view.dart';
-import '../../mobile_view/periodic_table/periodic_table_view.dart';
+import '../../../../model/element.dart';
+import '../periodic_table_web/element_list_view.dart';
+import '../periodic_table_web/periodic_table_web.dart';
 
 class PreparationEquationWebView extends StatefulWidget {
   const PreparationEquationWebView({Key? key}) : super(key: key);
 
   @override
-  State<PreparationEquationWebView> createState() => _PreparationEquationWebViewState();
+  State<PreparationEquationWebView> createState() =>
+      _PreparationEquationWebViewState();
 }
 
-class _PreparationEquationWebViewState extends State<PreparationEquationWebView> {
+class _PreparationEquationWebViewState
+    extends State<PreparationEquationWebView> {
   late PerformEquationProvider _performEquationProvider;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _performEquationProvider = Provider.of<PerformEquationProvider>(context, listen: false);
-
+    _performEquationProvider =
+        Provider.of<PerformEquationProvider>(context, listen: false);
   }
 
   @override
@@ -36,10 +37,8 @@ class _PreparationEquationWebViewState extends State<PreparationEquationWebView>
 
   @override
   Widget build(BuildContext context) {
-    List<ElementModel> elements =
-        Provider.of<PerformEquationProvider>(context).activeElements;
-    return Scaffold(
-        body: buildBody(context, elements));
+    List<ElementModel>elements=prepareElement(); // get element the user will select it ,init is empty
+    return Scaffold(body: buildBody(context, elements));
   }
 
   Widget buildBody(BuildContext context, List<ElementModel> elements) {
@@ -68,28 +67,27 @@ class _PreparationEquationWebViewState extends State<PreparationEquationWebView>
 
   Widget buildElementBody(List<ElementModel> elements) {
     return Container(
-        height: 230,
+        height: 350,
         padding: const EdgeInsets.all(8.0),
         child: elements.isEmpty
             ? const Text(
-          "Please add an element ",
-          style: AppStyle.style18,
-        )
-            : ElementsGridView(
-          elements: elements,
-          crossCount: 2,
-          inTable: false,
-          aspectRatio: 1.3,
-        ));
+                "Please add an element ",
+                style: AppStyle.style18,
+              )
+            : ElementsListViewWeb(
+                inTable: false,
+                elements: elements,
+              ));
   }
 
   Widget buildAddElementButtonBody(
       BuildContext context, List<ElementModel> elements) {
     return Visibility(
-      visible: elements.isEmpty,
+      visible: true,
       child: MaterialButton(
-        color: AppColor.colorC,
+        color: AppColor.colorA,
         onPressed: () {
+          Provider.of<PerformEquationProvider>(context,listen: false).updatePrepareEquation();
           Navigator.pushNamed(context, PeriodicTableWeb.routeName);
         },
         child: const Text(
@@ -124,63 +122,57 @@ class _PreparationEquationWebViewState extends State<PreparationEquationWebView>
                 )),
             CustomTextField(
                 controller:
-                Provider.of<PerformEquationProvider>(context, listen: false)
-                    .controllerA,
+                    Provider.of<PerformEquationProvider>(context, listen: false)
+                        .controllerA,
                 hintText: "Mass",
                 provider: Provider.of<PerformEquationProvider>(context,
                     listen: false)),
             CustomTextField(
                 controller:
-                Provider.of<PerformEquationProvider>(context, listen: false)
-                    .controllerB,
+                    Provider.of<PerformEquationProvider>(context, listen: false)
+                        .controllerB,
                 hintText: "Volume (mL)",
                 provider: Provider.of<PerformEquationProvider>(context,
                     listen: false)),
-            // Visibility(
-            //     visible: Provider.of<PerformEquationProvider>(context)
-            //         .functionOutput !=
-            //         null ,
-            //     child: Container(
-            //       margin: const EdgeInsets.all(8),
-            //       width: double.maxFinite,
-            //       padding: const EdgeInsets.all(20),
-            //       decoration: BoxDecoration(
-            //           color: AppColor.colorA,
-            //           borderRadius: BorderRadius.circular(16),
-            //           border: Border.all(color: Colors.black,width: 1)
-            //       ),
-            //       child: Text(
-            //         "The equation  : m = M * Mvt * v(mL)/1000 ,    where:\n""\n"
-            //             "m : unknown weight \n"
-            //             "M : moles \n"
-            //             "Mvt : part weight \n"
-            //             "v : solution \n"
-            //             .toString(),
-            //         style: AppStyle.style12,
-            //         textAlign: TextAlign.justify,
-            //       ),
-            //     )),
             Visibility(
                 visible: Provider.of<PerformEquationProvider>(context)
-                    .functionOutput !=
+                        .functionOutput !=
                     null,
                 child: Container(
                   margin: const EdgeInsets.all(8),
                   width: double.maxFinite,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                      color: AppColor.colorA,
+                      color: AppColor.colorD,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: Colors.black, width: 1)),
                   child: Text(
                     "The equation result : ${Provider.of<PerformEquationProvider>(context, listen: false).functionOutput}"
                         .toString(),
-                    style: AppStyle.style12,
+                    style: AppStyle.style16,
+                    textAlign: TextAlign.center,
+                  ),
+                )),
+            Visibility(
+                visible: Provider.of<PerformEquationProvider>(context)
+                        .isError ,// the element has one element is fake for title
+                child: Container(
+                  margin: const EdgeInsets.all(8),
+                  width: double.maxFinite,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      color: AppColor.errorMessage,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.black, width: 1)),
+                  child: Text(
+                    Provider.of<PerformEquationProvider>(context, listen: false).errorMessage
+                        .toString(),
+                    style: AppStyle.lato16,
                     textAlign: TextAlign.center,
                   ),
                 )),
             MaterialButton(
-              color: AppColor.colorC,
+              color: AppColor.colorA,
               onPressed: () {
                 Provider.of<PerformEquationProvider>(context, listen: false)
                     .onSubmit();
@@ -196,25 +188,17 @@ class _PreparationEquationWebViewState extends State<PreparationEquationWebView>
     );
   }
 
-  double getHeight(int len) {
-    int l = len ~/ 2;
-    if (len <= 2) {
-      return 140.0;
-    }
-    if (len.isEven) {
-      return 140 * l.toDouble();
-    } else {
-      return 140 * (l.toDouble() + 1);
-    }
-  }
-
-  double getHeight1(int len) {
-    if (len == 0) {
-      return 90;
-    }
-    if (len > 3) {
-      return 260;
-    }
-    return len * 90;
+  List<ElementModel>prepareElement(){
+    List<ElementModel> elements =[];
+    elements.insert(0, ElementModel(
+        id: "id",
+        name: "name",
+        atomicNumber: 010,
+        code: "Symbol",
+        molarMass: 010,
+        group: 010,
+        period: 010));
+    elements.addAll(Provider.of<PerformEquationProvider>(context).activeElements);
+    return elements;
   }
 }

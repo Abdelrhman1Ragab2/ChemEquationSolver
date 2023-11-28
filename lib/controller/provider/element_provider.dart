@@ -12,6 +12,12 @@ class ElementProvider with ChangeNotifier {
       .withConverter(
       fromFirestore: ElementModel.fromFirebase, toFirestore: ElementModel.toFirebase);
 
+  List<ElementModel> allElement=[];
+
+  cachingElement(List<ElementModel> data){
+    allElement=data;
+  }
+
 // use it to add all element to firebase
   // Future<void> addAllElement() async {
   //
@@ -31,11 +37,11 @@ class ElementProvider with ChangeNotifier {
     await _elementCollection.doc(elementId).delete();
   }
 
-  Stream<List<ElementModel>> getElementsStream() {
+  Future<List<ElementModel>> getFutureElements() {
     Query<ElementModel> query =
     _elementCollection.orderBy(ElementModel.elementAtomicKey, descending: false);
     return query.snapshots()
-        .map((event) => event.docs.map((e) => e.data()).toList());
+        .map((event) => event.docs.map((e) => e.data()).toList()).single;
   }
 
 

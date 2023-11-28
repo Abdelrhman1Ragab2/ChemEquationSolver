@@ -17,8 +17,9 @@ class MenuUI extends StatelessWidget {
 
   Widget buildBody(BuildContext context){
     return Container(
+      height: double.maxFinite,
       color: AppColor.colorA,
-      child:           Expanded(child: menusBody(context))
+      child: menusBody(context)
     );
 
   }
@@ -32,12 +33,13 @@ class MenuUI extends StatelessWidget {
   }
 
   Widget itemBody(BuildContext context,MenuModel menu,index){
+    bool isSelectedIndex=index==Provider.of<DashBoardProvider>(context).menusSelectedIndex;
     return Card(
       elevation: 20,
-      color: index==Provider.of<DashBoardProvider>(context).menusSelectedIndex?AppColor.colorC: AppColor.colorB,
+      color: isSelectedIndex?AppColor.colorC: AppColor.colorB,
       margin: const EdgeInsets.all(4.0),
       child: ListTile(
-        title:Text(menu.title,style:AppStyle.style16,) ,
+        title:Text(menu.title,style:isSelectedIndex?AppStyle.style16:AppStyle.style16W,) ,
         trailing: Image.asset(menu.imageUrl,height: 50,width: 50,),
         onTap: (){
           Provider.of<DashBoardProvider>(context,listen: false).changeMenuIndex(index);

@@ -6,7 +6,7 @@ import 'package:equation/view/mobile_view/on_bording/on_boarding_view.dart';
 import 'package:equation/view/mobile_view/periodic_table/periodic_table_view.dart';
 import 'package:equation/view/splash_screen.dart';
 import 'package:equation/view/web_view/dash_bord.dart';
-import 'package:equation/view/web_view/home/periodic_table_web.dart';
+import 'package:equation/view/web_view/home/periodic_table_web/periodic_table_web.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/user.dart';

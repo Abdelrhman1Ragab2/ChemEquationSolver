@@ -11,7 +11,8 @@ class SearchPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: TextField(
+      child: TextFormField(
+        controller: Provider.of<SearchProvider>(context).searchController,
           decoration: InputDecoration(
         suffixIcon: IconButton(
           icon: const Icon(Icons.search),
@@ -26,8 +27,7 @@ class SearchPageView extends StatelessWidget {
       )
       ,
       onChanged: (value){
-            print(value);
-            Provider.of<SearchProvider>(context,listen: false).activateElement(value);
+            Provider.of<SearchProvider>(context,listen: false).activateElement();
       },),
     );
   }
