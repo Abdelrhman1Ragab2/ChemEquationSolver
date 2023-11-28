@@ -19,7 +19,12 @@ class MenuUI extends StatelessWidget {
     return Container(
       height: double.maxFinite,
       color: AppColor.colorA,
-      child: menusBody(context)
+      child: Column(
+        children: [
+          Image.asset("assets/images/logo.png",height: 100,width: 100,),
+          menusBody(context),
+        ],
+      )
     );
 
   }

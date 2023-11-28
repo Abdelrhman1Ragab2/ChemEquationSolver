@@ -19,6 +19,7 @@ class DashBordView extends StatelessWidget {
 
   Widget buildBody(BuildContext context,int currentIndex) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(flex: 1, child: menuBody()),
         Expanded(flex: 4, child: homeBody(context,currentIndex)),

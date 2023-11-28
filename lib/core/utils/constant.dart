@@ -33,14 +33,14 @@ class AppConstant {
       title: "Preparation Solution3",
       imageUrl: AssetsData.chemistry,
     ),
-    MenuModel(title: "Preparation Solution4", imageUrl: AssetsData.science),
+    MenuModel(title: "Preparation Solution4", imageUrl: AssetsData.test4),
     MenuModel(
       title: "Preparation Solution5",
-      imageUrl: AssetsData.laboratory,
+      imageUrl: AssetsData.test5,
     ),
     MenuModel(
       title: "Preparation Solution6",
-      imageUrl: AssetsData.chemistry,
+      imageUrl: AssetsData.test6,
     ),
   ];
 
